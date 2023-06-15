@@ -1,9 +1,5 @@
 package com.psja.CurrencyCalculator;
 
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-
 public class CurrencyCalculator extends javax.swing.JFrame {
     Currency currency; 
     /**
@@ -14,8 +10,6 @@ public class CurrencyCalculator extends javax.swing.JFrame {
         currency = new Currency(this);
         currency.start();
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,6 +25,7 @@ public class CurrencyCalculator extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTab = new javax.swing.JTable();
+        jDate = new javax.swing.JLabel();
         tabConverter = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jComboCurrencyList = new javax.swing.JComboBox<>();
@@ -40,6 +35,7 @@ public class CurrencyCalculator extends javax.swing.JFrame {
         jCurrencyToPLN = new javax.swing.JTable();
         jCalculateBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jDate1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Aplikacja Walutowa");
@@ -68,6 +64,8 @@ public class CurrencyCalculator extends javax.swing.JFrame {
         jTab.setUpdateSelectionOnSort(false);
         jScrollPane1.setViewportView(jTab);
 
+        jDate.setText("Dane z dnia: ");
+
         javax.swing.GroupLayout tabTableLayout = new javax.swing.GroupLayout(tabTable);
         tabTable.setLayout(tabTableLayout);
         tabTableLayout.setHorizontalGroup(
@@ -75,19 +73,22 @@ public class CurrencyCalculator extends javax.swing.JFrame {
             .addGroup(tabTableLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tabTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
                     .addGroup(tabTableLayout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jDate)))
                 .addContainerGap())
         );
         tabTableLayout.setVerticalGroup(
             tabTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(tabTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jDate))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -97,6 +98,12 @@ public class CurrencyCalculator extends javax.swing.JFrame {
         tabConverter.setPreferredSize(new java.awt.Dimension(690, 540));
 
         jLabel1.setText("Wybierz walutę");
+
+        jComboCurrencyList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboCurrencyListActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Podaj kwotę");
 
@@ -135,6 +142,8 @@ public class CurrencyCalculator extends javax.swing.JFrame {
 
         jLabel5.setText("Kwota w innych walutach");
 
+        jDate1.setText("Dane z dnia: ");
+
         javax.swing.GroupLayout tabConverterLayout = new javax.swing.GroupLayout(tabConverter);
         tabConverter.setLayout(tabConverterLayout);
         tabConverterLayout.setHorizontalGroup(
@@ -144,23 +153,22 @@ public class CurrencyCalculator extends javax.swing.JFrame {
                 .addGroup(tabConverterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tabConverterLayout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jDate1))
+                    .addComponent(jScrollPane2)
                     .addGroup(tabConverterLayout.createSequentialGroup()
                         .addGroup(tabConverterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(tabConverterLayout.createSequentialGroup()
-                                .addGroup(tabConverterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(tabConverterLayout.createSequentialGroup()
-                                        .addComponent(jComboCurrencyList, 0, 221, Short.MAX_VALUE)
-                                        .addGap(18, 18, 18)))
-                                .addGroup(tabConverterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addGroup(tabConverterLayout.createSequentialGroup()
-                                        .addComponent(jamount, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jCalculateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap())))
+                                .addComponent(jComboCurrencyList, 0, 221, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)))
+                        .addGroup(tabConverterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(tabConverterLayout.createSequentialGroup()
+                                .addComponent(jamount, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jCalculateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         tabConverterLayout.setVerticalGroup(
             tabConverterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,7 +183,9 @@ public class CurrencyCalculator extends javax.swing.JFrame {
                     .addComponent(jamount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCalculateBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jLabel5)
+                .addGroup(tabConverterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jDate1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
         );
@@ -205,36 +215,12 @@ public class CurrencyCalculator extends javax.swing.JFrame {
     }//GEN-LAST:event_jamountActionPerformed
 
     private void jCalculateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCalculateBtnActionPerformed
-        ArrayList<Currency.CurrencyData> currencyList = currency.getArrayDataList();
-        double valuePLN=0;
-        try{
-        if(Double.parseDouble(jamount.getText().replaceAll(",", "."))<=0){
-            throw new NumberFormatException();
-        }
-        double selectedRate=0;
-        for(Currency.CurrencyData data:currencyList){
-            if(jComboCurrencyList.getSelectedItem().toString().equals(data.getCurrency())){
-                selectedRate=data.getMid();
-                valuePLN = Double.parseDouble(jamount.getText().replaceAll(",", ".")) * data.getMid();
-            }
-        }
-        DefaultTableModel model = (DefaultTableModel) jCurrencyToPLN.getModel();
-        // Wyczyszczenie istniejących danych w tabeli
-        model.setRowCount(0);
-        double otherCurrencyValue=0;
-        // Dodanie danych do tabeli
-            for (Currency.CurrencyData currencyData : currencyList) {
-            otherCurrencyValue=((Double.parseDouble(jamount.getText().replaceAll(",", "."))*selectedRate)/currencyData.getMid());
-            Object[] rowData = {currencyData.getCurrency(),currencyData.getCode(),String.format("%.6f",otherCurrencyValue)};
-            model.addRow(rowData);
-        }
-        
-        }
-        catch (NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Niepoprawna watorść", "Error", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
+        currency.calculate();
     }//GEN-LAST:event_jCalculateBtnActionPerformed
+
+    private void jComboCurrencyListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboCurrencyListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboCurrencyListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,7 +260,9 @@ public class CurrencyCalculator extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jCalculateBtn;
     protected javax.swing.JComboBox<String> jComboCurrencyList;
-    private javax.swing.JTable jCurrencyToPLN;
+    protected javax.swing.JTable jCurrencyToPLN;
+    protected javax.swing.JLabel jDate;
+    protected javax.swing.JLabel jDate1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -283,7 +271,7 @@ public class CurrencyCalculator extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     protected javax.swing.JTable jTab;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jamount;
+    protected javax.swing.JTextField jamount;
     private javax.swing.JPanel tabConverter;
     private javax.swing.JPanel tabTable;
     // End of variables declaration//GEN-END:variables
